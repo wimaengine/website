@@ -1,5 +1,6 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
+import { withBase } from '../lib/url';
 
 const description = 'Architecture now lives on docs.wimaengine.org.';
 ---
@@ -23,7 +24,7 @@ const description = 'Architecture now lives on docs.wimaengine.org.';
 
 			<div class="wima-link-row">
 				<a class="wima-button wima-button--primary" href="https://docs.wimaengine.org/">Open docs</a>
-				<a class="wima-button" href="/">Back home</a>
+				<a class="wima-button" href={withBase('/')}>Back home</a>
 			</div>
 		</section>
 	</div>

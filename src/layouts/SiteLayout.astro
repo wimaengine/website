@@ -2,6 +2,7 @@
 import '../styles/wima.css';
 import brandIconDark from '../assets/images/logo/wima-logo-dark.png';
 import brandIconLight from '../assets/images/logo/wima-logo-light.png';
+import { withBase } from '../lib/url';
 
 interface Props {
 	title: string;
@@ -50,7 +51,7 @@ const navItems = [
 	<body>
 		<a class="wima-skip-link" href="#content">Skip to content</a>
 		<header class="wima-header">
-			<a class="wima-brand" href="/" aria-label="Wima Engine home">
+			<a class="wima-brand" href={withBase('/')} aria-label="Wima Engine home">
 				<picture class="wima-brand__logo">
 					<source srcset={brandIconDark.src} media="(prefers-color-scheme: dark)" />
 					<img
@@ -69,15 +70,20 @@ const navItems = [
 			</a>
 
 			<nav class="wima-nav" aria-label="Primary">
-				{navItems.map((item) => (
-					<a
-						class="wima-nav__link"
-						href={item.href}
-						aria-current={normalizeHref(item.href) === normalizedPath ? 'page' : undefined}
-					>
-						{item.label}
-					</a>
-				))}
+				{navItems.map((item) => {
+					const href = withBase(item.href);
+					const ariaCurrent = href.startsWith('http')
+						? undefined
+						: normalizeHref(href) === normalizedPath
+							? 'page'
+							: undefined;
+
+					return (
+						<a class="wima-nav__link" href={href} aria-current={ariaCurrent}>
+							{item.label}
+						</a>
+					);
+				})}
 			</nav>
 		</header>
 

@@ -4,6 +4,7 @@ import logoDark from '../assets/images/logo/wima-logo-long-dark.png';
 import logoLight from '../assets/images/logo/wima-logo-long-light.png';
 import featurePlaceholder from '../assets/img-placeholder-dark.jpg';
 import { getNewsItems } from '../lib/news';
+import { withBase } from '../lib/url';
 
 const description = 'A modular ECS game engine for 2D and 3D projects.';
 const newsItems = await getNewsItems(3);
@@ -90,8 +91,8 @@ const featureItems = [
 			</div>
 
 			<div class="wima-link-row">
-				<a class="wima-button wima-button--primary" href="/news/">Browse all news</a>
-				<a class="wima-button" href="/releases/">Release notes</a>
+				<a class="wima-button wima-button--primary" href={withBase('/news/')}>Browse all news</a>
+				<a class="wima-button" href={withBase('/releases/')}>Release notes</a>
 			</div>
 		</section>
 

@@ -1,5 +1,6 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
+import { withBase } from '../lib/url';
 
 const description = 'Release information for Wima Engine.';
 const currentVersion = '0.3.0';
@@ -21,7 +22,7 @@ const currentVersion = '0.3.0';
 				<a class="wima-button wima-button--primary" href="https://github.com/wimaengine/wima/releases">
 					GitHub releases
 				</a>
-				<a class="wima-button" href="/">Back home</a>
+				<a class="wima-button" href={withBase('/')}>Back home</a>
 			</div>
 		</section>
 	</div>

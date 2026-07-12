@@ -1,5 +1,6 @@
 import { getCollection } from 'astro:content';
 import placeholderImage from '../assets/img-placeholder-dark.jpg';
+import { withBase } from './url';
 
 type NewsImage = typeof placeholderImage;
 
@@ -21,7 +22,7 @@ export async function getNewsItems(limit?: number): Promise<NewsItem[]> {
 		.sort((a, b) => b.data.publishedAt.localeCompare(a.data.publishedAt))
 		.slice(0, limit)
 		.map(({ data }) => ({
-			href: data.href,
+			href: withBase(data.href),
 			title: data.title,
 			summary: data.summary,
 			author: data.author,
