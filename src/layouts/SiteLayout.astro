@@ -21,6 +21,7 @@ const pageUrl = canonicalHref ?? (Astro.site ? new URL(pathname, Astro.site).toS
 const navItems = [
 	{ href: 'https://github.com/wimaengine/wima/discussions', label: 'Community' },
 	{ href: '/news/', label: 'News' },
+	{ href: '/releases/', label: 'Releases' },
 	{ href: 'https://docs.wimaengine.org/', label: 'Docs' },
 ];
 ---
@@ -64,7 +65,6 @@ const navItems = [
 				</picture>
 				<span class="wima-brand__text">
 					<span class="wima-brand__name">Wima Engine</span>
-					<span class="wima-brand__tag">Website</span>
 				</span>
 			</a>
 
