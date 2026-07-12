@@ -154,14 +154,6 @@ img {
 	letter-spacing: -0.02em;
 }
 
-.wima-brand__tag {
-	font-family: var(--wima-mono);
-	font-size: 0.65rem;
-	letter-spacing: 0.16em;
-	text-transform: uppercase;
-	color: var(--wima-muted);
-}
-
 .wima-nav {
 	display: flex;
 	flex-wrap: nowrap;
@@ -306,6 +298,15 @@ img {
 
 .wima-hero--stacked .wima-link-row {
 	justify-content: center;
+	justify-self: center;
+}
+
+.wima-link-row--compact {
+	align-items: center;
+}
+
+.wima-link-row--compact .wima-button {
+	padding-block: 0.5rem;
 }
 
 .wima-panel {

@@ -1,71 +1,23 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
 
-const description = 'Versioning and release cadence for Wima Engine.';
+const description = 'Release information for Wima Engine.';
 const currentVersion = '0.3.0';
-
-const cards = [
-	{
-		eyebrow: 'Workspace',
-		title: 'Packages evolve independently',
-		body: 'Modules live under `packages/*`, which keeps changes local instead of forcing a monolithic release path.',
-	},
-	{
-		eyebrow: 'Build',
-		title: 'Root bundle plus types',
-		body: 'The repository ships a root build and generated declarations, so the public surface stays practical to consume.',
-	},
-	{
-		eyebrow: 'Changelog',
-		title: 'Release notes stay with the code',
-		body: 'Use GitHub releases for history, and the docs site for any longer-form notes that need structure.',
-	},
-];
 ---
 
 <SiteLayout title="Releases" description={description}>
 	<div class="wima-page wima-page--releases">
-		<section class="wima-panel wima-hero">
+		<section class="wima-panel wima-hero wima-hero--stacked">
 			<div class="wima-hero__copy">
 				<p class="wima-kicker">Releases</p>
-				<h1 class="wima-hero__title">Versioning and release cadence.</h1>
-				<p class="wima-hero__lede">{description}</p>
-
-				<div class="wima-link-row">
-					<a class="wima-button wima-button--primary" href="https://github.com/wimaengine/wima/releases">
-						GitHub releases
-					</a>
-					<a class="wima-button" href="/">Back home</a>
-				</div>
 			</div>
 
 			<div class="wima-hero__aside">
 				<p class="wima-kicker">Current version</p>
 				<p class="wima-version">{currentVersion}</p>
-				<p class="wima-hero__note">Release work stays close to the source.</p>
-			</div>
-		</section>
-
-		<section class="wima-panel">
-			<div class="wima-grid wima-grid--three">
-				{cards.map((card) => (
-					<article class="wima-card">
-						<span class="wima-card__eyebrow">{card.eyebrow}</span>
-						<h3>{card.title}</h3>
-						<p>{card.body}</p>
-					</article>
-				))}
-			</div>
-		</section>
-
-		<section class="wima-panel">
-			<div class="wima-panel__heading">
-				<p class="wima-kicker">Release surface</p>
-				<h2>The website presents the engine. The repository handles publishing.</h2>
-				<p>That split keeps the landing pages focused while the source repo tracks the moving parts.</p>
 			</div>
 
-			<div class="wima-link-row">
+			<div class="wima-link-row wima-link-row--compact">
 				<a class="wima-button wima-button--primary" href="https://github.com/wimaengine/wima/releases">
 					GitHub releases
 				</a>
