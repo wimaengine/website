@@ -3,9 +3,10 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 import logoDark from '../assets/images/logo/wima-logo-long-dark.png';
 import logoLight from '../assets/images/logo/wima-logo-long-light.png';
 import featurePlaceholder from '../assets/img-placeholder-dark.jpg';
-import { newsItems } from '../data/news';
+import { getNewsItems } from '../lib/news';
 
 const description = 'A modular ECS game engine for 2D and 3D projects.';
+const newsItems = await getNewsItems(3);
 
 const featureItems = [
 	{
@@ -61,7 +62,7 @@ const featureItems = [
 			</div>
 
 			<div class="wima-news-list">
-				{newsItems.slice(0, 3).map((item) => (
+				{newsItems.map((item) => (
 					<a class="wima-news-preview" href={item.href}>
 						<div class="wima-news-preview__media">
 							<img

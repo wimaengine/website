@@ -1,8 +1,9 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
-import { newsItems } from '../data/news';
+import { getNewsItems } from '../lib/news';
 
-const description = '';
+const description = 'Latest news and updates from the Wima Engine project.';
+const newsItems = await getNewsItems();
 ---
 
 <SiteLayout title="News" description={description}>
