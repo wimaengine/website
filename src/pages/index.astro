@@ -1,0 +1,119 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import logoDark from '../assets/images/logo/wima-logo-long-dark.png';
+import logoLight from '../assets/images/logo/wima-logo-long-light.png';
+import featurePlaceholder from '../assets/img-placeholder-dark.jpg';
+import { newsItems } from '../data/news';
+
+const description = 'A modular ECS game engine for 2D and 3D projects.';
+
+const featureItems = [
+	{
+		eyebrow: 'Scene graph',
+		body: 'Parent and child relationships live in the hierarchy layer, so the scene tree is visible instead of being buried inside one object graph.',
+	},
+	{
+		eyebrow: 'Modularity',
+		body: 'Workspace packages register through plugins, which lets projects pull in only the systems they need and keep the rest out of the build.',
+	},
+	{
+		eyebrow: 'Physics',
+		body: 'Broadphase, narrowphase, collision masks, sleeping, and iterative solving stay separate, making the physics stack easier to tune and extend.',
+	},
+	{
+		eyebrow: 'Presentation',
+		body: 'Render backends, asset loaders, keyboard, mouse, touch input, persistence, and math utilities round out the engine without forcing a single delivery path.',
+	},
+];
+
+---
+
+<SiteLayout title="Wima Engine" description={description}>
+	<div class="wima-page wima-page--home">
+		<section class="wima-panel wima-hero wima-hero--stacked">
+			<div class="wima-hero__aside">
+				<picture class="wima-hero__logo">
+					<source srcset={logoDark.src} media="(prefers-color-scheme: dark)" />
+					<img
+						src={logoLight.src}
+						width={logoLight.width}
+						height={logoLight.height}
+						alt="Wima Engine"
+						loading="eager"
+						decoding="async"
+					/>
+				</picture>
+			</div>
+
+			<div class="wima-hero__copy">
+				<p class="wima-hero__lede">{description}</p>
+
+				<div class="wima-link-row">
+					<a class="wima-button wima-button--primary" href="https://docs.wimaengine.org/">Open docs</a>
+					<a class="wima-button" href="https://docs.wimaengine.org/examples/">Browse examples</a>
+				</div>
+			</div>
+		</section>
+
+		<section class="wima-panel">
+			<div class="wima-panel__heading">
+				<p class="wima-kicker">News</p>
+			</div>
+
+			<div class="wima-news-list">
+				{newsItems.slice(0, 3).map((item) => (
+					<a class="wima-news-preview" href={item.href}>
+						<div class="wima-news-preview__media">
+							<img
+								class="wima-news-preview__image"
+								src={item.image.src}
+								width={item.image.width}
+								height={item.image.height}
+								alt=""
+								loading="lazy"
+								decoding="async"
+							/>
+						</div>
+
+						<div class="wima-news-preview__body">
+							<h3>{item.title}</h3>
+							<p class="wima-news-preview__summary">{item.summary}</p>
+							<p class="wima-news-preview__meta">
+								By {item.author}
+								<span aria-hidden="true">·</span>
+								<time datetime={item.publishedAt}>{item.publishedLabel}</time>
+							</p>
+						</div>
+					</a>
+				))}
+			</div>
+
+			<div class="wima-link-row">
+				<a class="wima-button wima-button--primary" href="/news/">Browse all news</a>
+				<a class="wima-button" href="/releases/">Release notes</a>
+			</div>
+		</section>
+
+		<section class="wima-panel">
+			<div
+				class="wima-feature-rail"
+				style={`--wima-feature-bg: url(${featurePlaceholder.src});`}
+				aria-label="Wima engine features"
+			>
+				{featureItems.map((item, index) => (
+					<article class:list={{
+						'wima-feature-row': true,
+						'wima-feature-row--reverse': index % 2 === 1,
+					}}>
+						<div class="wima-feature-card" aria-hidden="true"></div>
+
+						<div class="wima-feature-copy">
+							<span class="wima-feature-copy__eyebrow">{item.eyebrow}</span>
+							<p class="wima-feature-copy__body">{item.body}</p>
+						</div>
+					</article>
+				))}
+			</div>
+		</section>
+	</div>
+</SiteLayout>

@@ -1,0 +1,92 @@
+---
+import '../styles/wima.css';
+import brandIconDark from '../assets/images/logo/wima-logo-dark.png';
+import brandIconLight from '../assets/images/logo/wima-logo-light.png';
+
+interface Props {
+	title: string;
+	description: string;
+	noindex?: boolean;
+	refreshTo?: string;
+	canonicalHref?: string;
+}
+
+const { title, description, noindex = false, refreshTo, canonicalHref } = Astro.props as Props;
+const siteTitle = 'Wima Engine';
+const pageTitle = title === siteTitle ? title : `${title} · ${siteTitle}`;
+const pathname = Astro.url.pathname;
+const normalizedPath = pathname === '/' ? '/' : pathname.replace(/\/$/, '');
+const normalizeHref = (href: string) => (href === '/' ? '/' : href.replace(/\/$/, ''));
+const pageUrl = canonicalHref ?? (Astro.site ? new URL(pathname, Astro.site).toString() : undefined);
+const navItems = [
+	{ href: 'https://github.com/wimaengine/wima/discussions', label: 'Community' },
+	{ href: '/news/', label: 'News' },
+	{ href: 'https://docs.wimaengine.org/', label: 'Docs' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{pageTitle}</title>
+		<meta name="description" content={description} />
+		<meta name="color-scheme" content="light dark" />
+		<meta name="theme-color" content="#eef3f1" />
+		<link rel="icon" type="image/png" href={brandIconLight.src} />
+		<link rel="icon" type="image/png" href={brandIconDark.src} media="(prefers-color-scheme: dark)" />
+		<link rel="apple-touch-icon" href={brandIconLight.src} />
+		{noindex ? <meta name="robots" content="noindex, nofollow" /> : null}
+		{refreshTo ? <meta http-equiv="refresh" content={`0; url=${refreshTo}`} /> : null}
+		{pageUrl ? <link rel="canonical" href={pageUrl} /> : null}
+		{pageUrl ? <meta property="og:url" content={pageUrl} /> : null}
+		<meta property="og:title" content={pageTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta name="twitter:card" content="summary" />
+	</head>
+	<body>
+		<a class="wima-skip-link" href="#content">Skip to content</a>
+		<header class="wima-header">
+			<a class="wima-brand" href="/" aria-label="Wima Engine home">
+				<picture class="wima-brand__logo">
+					<source srcset={brandIconDark.src} media="(prefers-color-scheme: dark)" />
+					<img
+						src={brandIconLight.src}
+						width={brandIconLight.width}
+						height={brandIconLight.height}
+						alt=""
+						aria-hidden="true"
+						loading="eager"
+						decoding="async"
+					/>
+				</picture>
+				<span class="wima-brand__text">
+					<span class="wima-brand__name">Wima Engine</span>
+					<span class="wima-brand__tag">Website</span>
+				</span>
+			</a>
+
+			<nav class="wima-nav" aria-label="Primary">
+				{navItems.map((item) => (
+					<a
+						class="wima-nav__link"
+						href={item.href}
+						aria-current={normalizeHref(item.href) === normalizedPath ? 'page' : undefined}
+					>
+						{item.label}
+					</a>
+				))}
+			</nav>
+		</header>
+
+		<main id="content" class="wima-main">
+			<slot />
+		</main>
+
+		<footer class="wima-footer">
+			<a class="wima-footer__link" href="https://github.com/wimaengine/wima">GitHub</a>
+		</footer>
+	</body>
+</html>

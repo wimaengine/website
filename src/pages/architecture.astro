@@ -1,0 +1,30 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+
+const description = 'Architecture now lives on docs.wimaengine.org.';
+---
+
+<SiteLayout
+	title="Architecture"
+	description={description}
+	noindex={true}
+	refreshTo="https://docs.wimaengine.org/"
+	canonicalHref="https://docs.wimaengine.org/"
+>
+	<div class="wima-page">
+		<section class="wima-panel">
+			<div class="wima-panel__heading">
+				<p class="wima-kicker">Redirecting</p>
+				<h1 class="wima-hero__title">Architecture moved to the docs site.</h1>
+				<p class="wima-hero__lede">
+					You’ll be redirected to docs.wimaengine.org.
+				</p>
+			</div>
+
+			<div class="wima-link-row">
+				<a class="wima-button wima-button--primary" href="https://docs.wimaengine.org/">Open docs</a>
+				<a class="wima-button" href="/">Back home</a>
+			</div>
+		</section>
+	</div>
+</SiteLayout>
