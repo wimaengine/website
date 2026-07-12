@@ -2,36 +2,12 @@
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { newsItems } from '../data/news';
 
-const description = 'Published updates, release notes, and short previews for Wima Engine.';
+const description = '';
 ---
 
 <SiteLayout title="News" description={description}>
 	<div class="wima-page wima-page--news">
-		<section class="wima-panel wima-hero">
-			<div class="wima-hero__copy">
-				<p class="wima-kicker">News</p>
-				<h1 class="wima-hero__title">Published updates and short previews.</h1>
-				<p class="wima-hero__lede">{description}</p>
-
-				<div class="wima-link-row">
-					<a class="wima-button wima-button--primary" href="/releases/">Release notes</a>
-					<a class="wima-button" href="/">Back home</a>
-				</div>
-			</div>
-
-			<div class="wima-hero__aside">
-				<p class="wima-kicker">What’s here</p>
-				<p>Release notes, architecture notes, docs updates, and community threads all show up as short previews.</p>
-			</div>
-		</section>
-
 		<section class="wima-panel">
-			<div class="wima-panel__heading">
-				<p class="wima-kicker">Latest</p>
-				<h2>Article previews for the current updates.</h2>
-				<p>Each preview includes the image, a short summary, and author/date metadata.</p>
-			</div>
-
 			<div class="wima-news-list">
 				{newsItems.map((item) => (
 					<a class="wima-news-preview" href={item.href}>
@@ -58,21 +34,6 @@ const description = 'Published updates, release notes, and short previews for Wi
 						</div>
 					</a>
 				))}
-			</div>
-		</section>
-
-		<section class="wima-panel">
-			<div class="wima-panel__heading">
-				<p class="wima-kicker">More sources</p>
-				<h2>Follow the rest of the engine where it ships.</h2>
-			</div>
-
-			<div class="wima-link-row">
-				<a class="wima-button wima-button--primary" href="https://github.com/wimaengine/wima/releases">
-					GitHub releases
-				</a>
-				<a class="wima-button" href="https://github.com/wimaengine/wima/discussions">Community</a>
-				<a class="wima-button" href="https://docs.wimaengine.org/">Docs</a>
 			</div>
 		</section>
 	</div>
