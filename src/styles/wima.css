@@ -248,15 +248,6 @@ img {
 	text-align: center;
 }
 
-.wima-page h1 {
-	margin: 0;
-	font-family: var(--wima-display);
-	font-size: clamp(2.65rem, 7vw, 5.35rem);
-	font-weight: 600;
-	line-height: 0.94;
-	letter-spacing: -0.05em;
-}
-
 .wima-hero__lede {
 	max-width: 58ch;
 	font-size: 1.05rem;
@@ -345,24 +336,6 @@ img {
 	color: var(--wima-muted);
 }
 
-.wima-page h2,
-.wima-page h3 {
-	margin: 0;
-	font-family: var(--wima-display);
-	letter-spacing: -0.02em;
-}
-
-.wima-page h2 {
-	font-size: clamp(1.5rem, 3vw, 2.2rem);
-	line-height: 1.05;
-}
-
-.wima-page h3 {
-	font-size: 1.05rem;
-	line-height: 1.25;
-	font-weight: 600;
-}
-
 .wima-page p {
 	margin: 0;
 	color: var(--wima-muted);
@@ -436,12 +409,6 @@ img {
 	padding: 1.15rem;
 }
 
-.wima-news-card__title {
-	font-size: clamp(1.3rem, 2.3vw, 1.7rem);
-	line-height: 1.1;
-	text-wrap: balance;
-}
-
 .wima-news-card__summary {
 	font-size: 0.98rem;
 	line-height: 1.6 !important;
@@ -493,12 +460,6 @@ img {
 	color: var(--wima-muted);
 	font-size: 1.05rem;
 	line-height: 1.8;
-}
-
-.wima-article__body :where(h2, h3) {
-	margin-top: 1.25rem;
-	font-family: var(--wima-display);
-	line-height: 1.15;
 }
 
 .wima-article__body :where(ul, ol) {
@@ -573,13 +534,6 @@ img {
 	min-width: 0;
 	overflow: hidden;
 	padding-top: 0.1rem;
-}
-
-.wima-news-preview__body h3 {
-	display: -webkit-box;
-	overflow: hidden;
-	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 2;
 }
 
 .wima-news-preview__summary {
@@ -660,11 +614,6 @@ img {
 	letter-spacing: 0.22em;
 	text-transform: uppercase;
 	color: var(--wima-accent-2);
-}
-
-.wima-feature-copy h3 {
-	font-size: clamp(1.2rem, 2.4vw, 1.6rem);
-	line-height: 1.12;
 }
 
 .wima-feature-copy .wima-feature-copy__body {
