@@ -577,7 +577,6 @@ img {
 .wima-feature-row + .wima-feature-row {
 	margin-top: 1.25rem;
 	padding-top: 1.25rem;
-	border-top: 1px solid var(--wima-line);
 }
 
 .wima-feature-row--reverse {
@@ -593,7 +592,6 @@ img {
 	flex: 0 0 auto;
 	overflow: hidden;
 	padding: 0;
-	border: 1px solid var(--wima-line);
 	background-color: var(--wima-feature-surface);
 	background-image: var(--wima-feature-bg);
 	background-position: center;
