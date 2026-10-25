@@ -11,7 +11,6 @@
 	--wima-accent: #2f9e44;
 	--wima-accent-2: #6b9d38;
 	--wima-accent-soft: rgba(47, 158, 68, 0.12);
-	--wima-feature-surface: #d6d6d6;
 	--wima-shadow: 0 22px 60px rgba(0, 0, 0, 0.12);
 }
 
@@ -25,7 +24,6 @@
 	--wima-accent: #70df78;
 	--wima-accent-2: #b5d86c;
 	--wima-accent-soft: rgba(112, 223, 120, 0.14);
-	--wima-feature-surface: #333333;
 	--wima-shadow: 0 28px 70px rgba(0, 0, 0, 0.42);
 }
 
@@ -40,7 +38,6 @@
 		--wima-accent: #70df78;
 		--wima-accent-2: #b5d86c;
 		--wima-accent-soft: rgba(112, 223, 120, 0.14);
-		--wima-feature-surface: #333333;
 		--wima-shadow: 0 28px 70px rgba(0, 0, 0, 0.42);
 	}
 }
@@ -592,13 +589,12 @@ img {
 	flex: 0 0 auto;
 	overflow: hidden;
 	padding: 0;
-	background-color: var(--wima-feature-surface);
-	background-image: var(--wima-feature-bg);
+	background-color: transparent;
+	background-image: var(--wima-feature-image);
 	background-position: center;
-	background-size: cover;
+	background-size: contain;
 	background-repeat: no-repeat;
 	color: var(--wima-text);
-	box-shadow: 0 24px 60px rgba(0, 0, 0, 0.24);
 }
 
 .wima-feature-copy {

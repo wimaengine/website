@@ -2,7 +2,13 @@
 import SiteLayout from '../layouts/SiteLayout.astro';
 import logoDark from '../assets/images/logo/wima-logo-long-dark.png';
 import logoLight from '../assets/images/logo/wima-logo-long-light.png';
-import featurePlaceholder from '../assets/img-placeholder-dark.jpg';
+import sceneGraphIcon from '../assets/images/icons/scene-graph.png';
+import modularityIcon from '../assets/images/icons/modularity.png';
+import physicsIcon from '../assets/images/icons/physics.png';
+import renderingIcon from '../assets/images/icons/rendering.png';
+import inputIcon from '../assets/images/icons/input.png';
+import assetsIcon from '../assets/images/icons/assets.png';
+import mathIcon from '../assets/images/icons/math.png';
 import { formatPublishedDate, getNewsItems } from '../lib/news';
 import { withBase } from '../lib/url';
 
@@ -12,19 +18,38 @@ const newsItems = await getNewsItems(3);
 const featureItems = [
 	{
 		eyebrow: 'Scene graph',
+		image: sceneGraphIcon,
 		body: 'Parent and child relationships live in the hierarchy layer, so the scene tree is visible instead of being buried inside one object graph.',
 	},
 	{
 		eyebrow: 'Modularity',
+		image: assetsIcon,
 		body: 'Workspace packages register through plugins, which lets projects pull in only the systems they need and keep the rest out of the build.',
 	},
 	{
 		eyebrow: 'Physics',
+		image: physicsIcon,
 		body: 'Broadphase, narrowphase, collision masks, sleeping, and iterative solving stay separate, making the physics stack easier to tune and extend.',
 	},
 	{
-		eyebrow: 'Presentation',
-		body: 'Render backends, asset loaders, keyboard, mouse, touch input, persistence, and math utilities round out the engine without forcing a single delivery path.',
+		eyebrow: 'Rendering',
+		image: renderingIcon,
+		body: 'Render backends give projects control over how scenes are presented without forcing a single delivery path.',
+	},
+	{
+		eyebrow: 'Input',
+		image: inputIcon,
+		body: 'Keyboard, mouse, and touch input share a consistent interface across different kinds of projects.',
+	},
+	{
+		eyebrow: 'Assets',
+		image: modularityIcon,
+		body: 'Asset loaders and resource utilities keep project data organized and easy to bring into the runtime.',
+	},
+	{
+		eyebrow: 'Math',
+		image: mathIcon,
+		body: 'Reusable math utilities support the vectors, transforms, and calculations that power scenes, physics, and gameplay.',
 	},
 ];
 
@@ -93,17 +118,17 @@ const featureItems = [
 		</section>
 
 		<section class="wima-panel">
-			<div
-				class="wima-feature-rail"
-				style={`--wima-feature-bg: url(${featurePlaceholder.src});`}
-				aria-label="Wima engine features"
-			>
+			<div class="wima-feature-rail" aria-label="Wima engine features">
 				{featureItems.map((item, index) => (
 					<article class:list={{
 						'wima-feature-row': true,
 						'wima-feature-row--reverse': index % 2 === 1,
 					}}>
-						<div class="wima-feature-card" aria-hidden="true"></div>
+						<div
+							class="wima-feature-card"
+							style={`--wima-feature-image: url(${item.image.src});`}
+							aria-hidden="true"
+						></div>
 
 						<div class="wima-feature-copy">
 							<span class="wima-feature-copy__eyebrow">{item.eyebrow}</span>
