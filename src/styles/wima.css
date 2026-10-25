@@ -2,42 +2,45 @@
 	--wima-sans: 'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 	--wima-display: 'IBM Plex Serif', 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
 	--wima-mono: 'IBM Plex Mono', 'SFMono-Regular', ui-monospace, 'Cascadia Code', monospace;
-	--wima-bg: #eef3f1;
+	--wima-bg: #ededed;
 	--wima-surface: rgba(255, 255, 255, 0.72);
 	--wima-surface-strong: rgba(255, 255, 255, 0.9);
-	--wima-line: rgba(16, 34, 38, 0.14);
-	--wima-text: #102026;
-	--wima-muted: #54666d;
-	--wima-accent: #0f9c86;
-	--wima-accent-2: #b8692e;
-	--wima-accent-soft: rgba(15, 156, 134, 0.12);
-	--wima-shadow: 0 22px 60px rgba(10, 24, 27, 0.12);
+	--wima-line: rgba(20, 20, 20, 0.16);
+	--wima-text: #151515;
+	--wima-muted: #5f5f5f;
+	--wima-accent: #2f9e44;
+	--wima-accent-2: #6b9d38;
+	--wima-accent-soft: rgba(47, 158, 68, 0.12);
+	--wima-feature-surface: #d6d6d6;
+	--wima-shadow: 0 22px 60px rgba(0, 0, 0, 0.12);
 }
 
 :root[data-theme='dark'] {
-	--wima-bg: #071014;
-	--wima-surface: rgba(8, 17, 22, 0.82);
-	--wima-surface-strong: rgba(12, 24, 31, 0.92);
-	--wima-line: rgba(141, 224, 210, 0.16);
-	--wima-text: #ebf7f4;
-	--wima-muted: #9eb1ac;
-	--wima-accent: #8de0d2;
-	--wima-accent-2: #efb37b;
-	--wima-accent-soft: rgba(141, 224, 210, 0.12);
+	--wima-bg: #1b1b1b;
+	--wima-surface: rgba(37, 37, 37, 0.92);
+	--wima-surface-strong: rgba(47, 47, 47, 0.96);
+	--wima-line: rgba(240, 240, 240, 0.16);
+	--wima-text: #f2f2f2;
+	--wima-muted: #aaaaaa;
+	--wima-accent: #70df78;
+	--wima-accent-2: #b5d86c;
+	--wima-accent-soft: rgba(112, 223, 120, 0.14);
+	--wima-feature-surface: #333333;
 	--wima-shadow: 0 28px 70px rgba(0, 0, 0, 0.42);
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--wima-bg: #071014;
-		--wima-surface: rgba(8, 17, 22, 0.82);
-		--wima-surface-strong: rgba(12, 24, 31, 0.92);
-		--wima-line: rgba(141, 224, 210, 0.16);
-		--wima-text: #ebf7f4;
-		--wima-muted: #9eb1ac;
-		--wima-accent: #8de0d2;
-		--wima-accent-2: #efb37b;
-		--wima-accent-soft: rgba(141, 224, 210, 0.12);
+		--wima-bg: #1b1b1b;
+		--wima-surface: rgba(37, 37, 37, 0.92);
+		--wima-surface-strong: rgba(47, 47, 47, 0.96);
+		--wima-line: rgba(240, 240, 240, 0.16);
+		--wima-text: #f2f2f2;
+		--wima-muted: #aaaaaa;
+		--wima-accent: #70df78;
+		--wima-accent-2: #b5d86c;
+		--wima-accent-soft: rgba(112, 223, 120, 0.14);
+		--wima-feature-surface: #333333;
 		--wima-shadow: 0 28px 70px rgba(0, 0, 0, 0.42);
 	}
 }
@@ -590,12 +593,14 @@ img {
 	flex: 0 0 auto;
 	overflow: hidden;
 	padding: 0;
-	border-color: rgba(255, 255, 255, 0.16);
-	background:
-		linear-gradient(180deg, rgba(7, 16, 20, 0.14) 0%, rgba(7, 16, 20, 0.52) 42%, rgba(7, 16, 20, 0.88) 100%),
-		var(--wima-feature-bg) center / cover no-repeat;
-	color: #f4f7f6;
-	box-shadow: 0 24px 60px rgba(4, 11, 13, 0.22);
+	border: 1px solid var(--wima-line);
+	background-color: var(--wima-feature-surface);
+	background-image: var(--wima-feature-bg);
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	color: var(--wima-text);
+	box-shadow: 0 24px 60px rgba(0, 0, 0, 0.24);
 }
 
 .wima-feature-copy {
@@ -709,7 +714,8 @@ img {
 
 .wima-button--primary {
 	border-color: var(--wima-accent);
-	background: var(--wima-surface-strong);
+	background: var(--wima-accent);
+	color: #081008;
 }
 
 .wima-card:focus-visible,
