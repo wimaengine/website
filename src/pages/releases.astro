@@ -1,21 +1,32 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
+import ReleaseCard from '../components/ReleaseCard.astro';
+import { formatReleaseDate, getReleases } from '../lib/releases';
 import { withBase } from '../lib/url';
 
 const description = 'Release information, version history, and GitHub release links for Wima Engine.';
-const currentVersion = '0.3.0';
+const releases = await getReleases();
+const latestRelease = releases.find((release) => !release.isPrerelease) ?? releases[0];
 ---
 
 <SiteLayout title="Releases" description={description}>
 	<div class="wima-page wima-page--releases">
 		<section class="wima-panel wima-hero wima-hero--stacked">
-			<div class="wima-hero__copy">
-				<p class="wima-kicker">Releases</p>
-			</div>
-
-			<div class="wima-hero__aside">
-				<p class="wima-kicker">Current version</p>
-				<p class="wima-version">{currentVersion}</p>
+			<div class="wima-release-hero__stats" aria-label="Release summary">
+				<div class="wima-release-hero__stat">
+					<p class="wima-kicker">Latest stable</p>
+					<p class="wima-release-hero__version">{latestRelease?.tag ?? '—'}</p>
+				</div>
+				<div class="wima-release-hero__stat">
+					<p class="wima-kicker">Published</p>
+					{latestRelease ? (
+						<time class="wima-release-hero__date" datetime={latestRelease.publishedAt}>
+							{formatReleaseDate(latestRelease.publishedAt)}
+						</time>
+					) : (
+						<p class="wima-release-hero__date">Unavailable</p>
+					)}
+				</div>
 			</div>
 
 			<div class="wima-link-row wima-link-row--compact">
@@ -24,6 +35,29 @@ const currentVersion = '0.3.0';
 				</a>
 				<a class="wima-button" href={withBase('/')}>Back home</a>
 			</div>
+		</section>
+
+		<section class="wima-panel wima-release-history">
+			<div class="wima-panel__heading">
+				<p class="wima-kicker">Release history</p>
+			</div>
+
+			{releases.length > 0 ? (
+				<ol class="wima-release-list" aria-label="Wima Engine release history">
+					{releases.map((release) => (
+						<ReleaseCard release={release} isLatest={release.tag === latestRelease?.tag} />
+					))}
+				</ol>
+			) : (
+				<div class="wima-release-empty">
+					<p class="wima-kicker">Could not sync</p>
+					<h2>Open GitHub for the current release history.</h2>
+					<p>The release list will populate again on the next successful site build.</p>
+					<a class="wima-button wima-button--primary" href="https://github.com/wimaengine/wima/releases">
+						View releases on GitHub <span aria-hidden="true">↗</span>
+					</a>
+				</div>
+			)}
 		</section>
 	</div>
 </SiteLayout>

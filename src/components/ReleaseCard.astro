@@ -1,0 +1,54 @@
+---
+import { formatAssetSize, formatReleaseDate, type Release } from '../lib/releases';
+
+interface Props {
+	release: Release;
+	isLatest?: boolean;
+}
+
+const { release, isLatest = false } = Astro.props as Props;
+---
+
+<li class:list={{ 'wima-release-item': true, 'wima-release-item--latest': isLatest }}>
+	<article class="wima-release-card" aria-label={`Release ${release.tag}`}>
+		<span class="wima-release-item__marker" aria-hidden="true"></span>
+
+		<header class="wima-release-card__header">
+			<p class="wima-release-card__eyebrow">
+				<span class="wima-release-card__tag">{release.tag}</span>
+				{isLatest ? <span class="wima-release-card__badge">Latest stable</span> : null}
+				{release.isPrerelease ? <span class="wima-release-card__badge">Pre-release</span> : null}
+			</p>
+
+			<time class="wima-release-card__date" datetime={release.publishedAt}>
+				{formatReleaseDate(release.publishedAt)}
+			</time>
+		</header>
+
+		<footer class="wima-release-card__footer">
+			{release.assets.length > 0 ? (
+				<div class="wima-release-assets">
+					<p class="wima-release-assets__label">Downloads</p>
+					<ul class="wima-release-assets__list">
+						{release.assets.map((asset) => (
+							<li>
+								<a class="wima-release-asset" href={asset.url}>
+									<span>{asset.name}</span>
+									<span class="wima-release-asset__meta">
+										{formatAssetSize(asset.size)}
+										<span aria-hidden="true">·</span>
+										{asset.downloadCount.toLocaleString()} downloads
+									</span>
+								</a>
+							</li>
+						))}
+					</ul>
+				</div>
+			) : null}
+
+			<a class="wima-button wima-button--primary" href={release.href}>
+				Read on GitHub <span aria-hidden="true">↗</span>
+			</a>
+		</footer>
+	</article>
+</li>
