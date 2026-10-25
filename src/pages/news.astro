@@ -1,5 +1,6 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
+import NewsCard from '../components/NewsCard.astro';
 import { getNewsItems } from '../lib/news';
 
 const description = 'Latest news, release notes, and project updates from the Wima Engine project.';
@@ -9,32 +10,8 @@ const newsItems = await getNewsItems();
 <SiteLayout title="News" description={description}>
 	<div class="wima-page wima-page--news">
 		<section class="wima-panel">
-			<div class="wima-news-list">
-				{newsItems.map((item) => (
-					<a class="wima-news-preview" href={item.href}>
-						<div class="wima-news-preview__media">
-							<img
-								class="wima-news-preview__image"
-								src={item.image.src}
-								width={item.image.width}
-								height={item.image.height}
-								alt=""
-								loading="lazy"
-								decoding="async"
-							/>
-						</div>
-
-						<div class="wima-news-preview__body">
-							<h3>{item.title}</h3>
-							<p class="wima-news-preview__summary">{item.summary}</p>
-							<p class="wima-news-preview__meta">
-								By {item.author}
-								<span aria-hidden="true">·</span>
-								<time datetime={item.publishedAt}>{item.publishedLabel}</time>
-							</p>
-						</div>
-					</a>
-				))}
+			<div class="wima-news-grid">
+				{newsItems.map((item) => <NewsCard item={item} />)}
 			</div>
 		</section>
 	</div>

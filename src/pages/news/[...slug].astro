@@ -1,0 +1,81 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getCollection, render } from 'astro:content';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { formatPublishedDate } from '../../lib/news';
+import { withBase } from '../../lib/url';
+
+export async function getStaticPaths() {
+	const entries = (await getCollection('news')).sort((a, b) =>
+		b.data.publishedAt.localeCompare(a.data.publishedAt),
+	);
+
+	return entries.map((entry, index) => ({
+		params: { slug: entry.id },
+		props: {
+			entry,
+			previousEntry: entries[index - 1],
+			nextEntry: entries[index + 1],
+		},
+	}));
+}
+
+interface Props {
+	entry: CollectionEntry<'news'>;
+	previousEntry?: CollectionEntry<'news'>;
+	nextEntry?: CollectionEntry<'news'>;
+}
+
+const { entry, previousEntry, nextEntry } = Astro.props as Props;
+const { Content } = await render(entry);
+const { data } = entry;
+---
+
+<SiteLayout
+	title={data.title}
+	description={data.summary}
+	type="article"
+	socialImage={data.image}
+	socialImageAlt={data.title}
+>
+	<div class="wima-page wima-page--article">
+		<article class="wima-article">
+			<header class="wima-article__header">
+				<a class="wima-article__back" href={withBase('/news/')}>← All news</a>
+				<h1>{data.title}</h1>
+				<p class="wima-article__meta">
+					By {data.author}
+					<span aria-hidden="true">·</span>
+					<time datetime={data.publishedAt}>{formatPublishedDate(data.publishedAt)}</time>
+				</p>
+			</header>
+
+			<div class="wima-article__body">
+				<Content />
+			</div>
+
+			<nav class="wima-article__footer" aria-label="News article navigation">
+				{previousEntry ? (
+					<a
+						class="wima-button"
+						href={withBase(`/news/${previousEntry.id}/`)}
+						aria-label={`Previous article: ${previousEntry.data.title}`}
+					>
+						<span aria-hidden="true">←</span>
+						Previous
+					</a>
+				) : null}
+				{nextEntry ? (
+					<a
+						class="wima-button"
+						href={withBase(`/news/${nextEntry.id}/`)}
+						aria-label={`Next article: ${nextEntry.data.title}`}
+					>
+						Next
+						<span aria-hidden="true">→</span>
+					</a>
+				) : null}
+			</nav>
+		</article>
+	</div>
+</SiteLayout>

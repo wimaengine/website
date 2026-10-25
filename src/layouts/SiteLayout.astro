@@ -17,6 +17,7 @@ interface Props {
 	noindex?: boolean;
 	refreshTo?: string;
 	canonicalHref?: string;
+	type?: 'website' | 'article';
 	socialImage?: SocialImage;
 	socialImageAlt?: string;
 }
@@ -27,6 +28,7 @@ const {
 	noindex = false,
 	refreshTo,
 	canonicalHref,
+	type = 'website',
 	socialImage = brandSocialImage,
 	socialImageAlt,
 } = Astro.props as Props;
@@ -65,7 +67,7 @@ const navItems = [
 		<meta property="og:title" content={pageTitle} />
 		<meta property="og:description" content={description} />
 		<meta property="og:site_name" content={siteTitle} />
-		<meta property="og:type" content="website" />
+		<meta property="og:type" content={type} />
 		<meta property="og:locale" content="en_US" />
 		{socialImageUrl ? <meta property="og:image" content={socialImageUrl} /> : null}
 		{socialImageUrl ? <meta property="og:image:width" content={String(socialImage.width)} /> : null}

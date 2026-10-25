@@ -10,9 +10,21 @@ export type NewsItem = {
 	summary: string;
 	author: string;
 	publishedAt: string;
-	publishedLabel: string;
 	image: NewsImage;
 };
+
+const publishedDateFormatter = new Intl.DateTimeFormat('en-US', {
+	day: 'numeric',
+	month: 'long',
+	timeZone: 'UTC',
+	year: 'numeric',
+});
+
+export function formatPublishedDate(publishedAt: string): string {
+	const date = new Date(`${publishedAt}T00:00:00Z`);
+
+	return Number.isNaN(date.valueOf()) ? publishedAt : publishedDateFormatter.format(date);
+}
 
 export async function getNewsItems(limit?: number): Promise<NewsItem[]> {
 	const entries = await getCollection('news');
@@ -21,13 +33,12 @@ export async function getNewsItems(limit?: number): Promise<NewsItem[]> {
 		.slice()
 		.sort((a, b) => b.data.publishedAt.localeCompare(a.data.publishedAt))
 		.slice(0, limit)
-		.map(({ data }) => ({
-			href: withBase(data.href),
+		.map(({ id, data }) => ({
+			href: withBase(`/news/${id}/`),
 			title: data.title,
 			summary: data.summary,
 			author: data.author,
 			publishedAt: data.publishedAt,
-			publishedLabel: data.publishedLabel,
 			image: data.image ?? placeholderImage,
 		}));
 }

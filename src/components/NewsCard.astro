@@ -1,0 +1,33 @@
+---
+import { formatPublishedDate, type NewsItem } from '../lib/news';
+
+interface Props {
+	item: NewsItem;
+}
+
+const { item } = Astro.props as Props;
+---
+
+<a class="wima-news-card" href={item.href}>
+	<div class="wima-news-card__media">
+		<img
+			class="wima-news-card__image"
+			src={item.image.src}
+			width={item.image.width}
+			height={item.image.height}
+			alt=""
+			loading="lazy"
+			decoding="async"
+		/>
+	</div>
+
+	<div class="wima-news-card__body">
+		<h2 class="wima-news-card__title">{item.title}</h2>
+		<p class="wima-news-card__summary">{item.summary}</p>
+		<p class="wima-news-card__meta">
+			By {item.author}
+			<span aria-hidden="true">·</span>
+			<time datetime={item.publishedAt}>{formatPublishedDate(item.publishedAt)}</time>
+		</p>
+	</div>
+</a>

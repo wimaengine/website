@@ -3,7 +3,7 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 import logoDark from '../assets/images/logo/wima-logo-long-dark.png';
 import logoLight from '../assets/images/logo/wima-logo-long-light.png';
 import featurePlaceholder from '../assets/img-placeholder-dark.jpg';
-import { getNewsItems } from '../lib/news';
+import { formatPublishedDate, getNewsItems } from '../lib/news';
 import { withBase } from '../lib/url';
 
 const description = 'Wima Engine is a modular ECS game engine for 2D and 3D projects, with a scene graph, physics, input, and plugin-based systems.';
@@ -60,6 +60,7 @@ const featureItems = [
 		<section class="wima-panel">
 			<div class="wima-panel__heading">
 				<p class="wima-kicker">News</p>
+				<h2>Latest from Wima.</h2>
 			</div>
 
 			<div class="wima-news-list">
@@ -83,14 +84,14 @@ const featureItems = [
 							<p class="wima-news-preview__meta">
 								By {item.author}
 								<span aria-hidden="true">·</span>
-								<time datetime={item.publishedAt}>{item.publishedLabel}</time>
+								<time datetime={item.publishedAt}>{formatPublishedDate(item.publishedAt)}</time>
 							</p>
 						</div>
 					</a>
 				))}
 			</div>
 
-			<div class="wima-link-row">
+			<div class="wima-link-row wima-link-row--news-actions">
 				<a class="wima-button wima-button--primary" href={withBase('/news/')}>Browse all news</a>
 				<a class="wima-button" href={withBase('/releases/')}>Release notes</a>
 			</div>
